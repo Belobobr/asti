@@ -9,8 +9,6 @@ import {Link} from "react-router-native";
 export default class MainScreen extends Component {
 
     render() {
-        debugger;
-
         return <View style={styles.container}>
             {/*<Toolbar style={styles.toolbar} title="Instagramm"/>*/}
             <ToolbarAndroid

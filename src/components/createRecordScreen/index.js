@@ -30,7 +30,6 @@ export default class CreateRecordScreen extends Component {
     }
 
     backPressed = () => {
-        debugger;
         return this.props.history.entries.length === 1;
     };
 
