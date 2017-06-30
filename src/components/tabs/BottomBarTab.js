@@ -15,7 +15,6 @@ export default class Tab extends Component {
         return <TouchableNativeFeedback
             onPress={this.props.onPress}
             background={TouchableNativeFeedback.SelectableBackground()}
-            style={{flex: 1, backgroundColor: 'black'}}
         >
             <View style={styles.container}>
                 <Icon
