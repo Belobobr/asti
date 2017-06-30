@@ -1,20 +1,21 @@
 import React, {Component} from "react";
-import {StyleSheet, View, ToolbarAndroid, Image, TouchableNativeFeedback} from "react-native";
+import {StyleSheet, View, ToolbarAndroid, Image, Text, TouchableNativeFeedback} from "react-native";
 import Tabs from "./../tabs";
 import LeaderBoardTab from "./LeaderBoardTab";
 import MapTab from "./MapTab";
 import ProfileTab from "./ProfileTab";
+import {Link} from "react-router-native";
 
 export default class MainScreen extends Component {
 
     render() {
+        debugger;
+
         return <View style={styles.container}>
             {/*<Toolbar style={styles.toolbar} title="Instagramm"/>*/}
             <ToolbarAndroid
-                logo={require('./../../images/ic_account_circle_black_24dp.png')}
                 style={styles.toolbar}
-                title="AwesomeApp"
-                actions={[{title: 'Settings', show: 'always'}]}
+                title="SocialGuide"
                 onActionSelected={this.onActionSelected}/>
             <Tabs>
                 <MapTab iconName='user' title='Карта' {...this.props}/>
@@ -32,7 +33,11 @@ export default class MainScreen extends Component {
                 }}
             >
                 <View style={styles.fab}>
-
+                    <Link
+                        to="/createRecord"
+                        underlayColor='#f0f4f7'>
+                        <Text>About</Text>
+                    </Link>
                 </View>
             </TouchableNativeFeedback>
         </View>
@@ -61,6 +66,9 @@ const styles = StyleSheet.create({
         position: 'absolute',
         right: 8,
         bottom: 56 + 8,
-        borderRadius: 28
+        borderRadius: 28,
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
     }
 });
