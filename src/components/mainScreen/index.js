@@ -17,7 +17,7 @@ export default class MainScreen extends Component {
                 style={styles.toolbar}
                 title="SocialGuide"
                 onActionSelected={this.onActionSelected}/>
-            <Tabs>
+            <Tabs style={styles.tabs}>
                 <MapTab iconName='user' title='Карта' {...this.props}/>
                 <LeaderBoardTab iconName='hashtag' title='Лидеры' {...this.props}/>
                 <ProfileTab iconName='user' title='Профиль' {...this.props}/>
@@ -56,10 +56,15 @@ const styles = StyleSheet.create({
         backgroundColor: '#FAFAFA',
     },
     toolbar: {
+        elevation: 5,
         height: 48,
         backgroundColor: 'white'
     },
+    tabs: {
+      elevation: 5,
+    },
     fab: {
+        elevation: 5,
         width: 56,
         height: 56,
         backgroundColor: 'red',
