@@ -1,6 +1,5 @@
 import React, {Component} from "react";
 import {StyleSheet, View, ToolbarAndroid, Image, Text, TouchableNativeFeedback, Dimensions} from "react-native";
-import {Link} from "react-router-native";
 import MapView from "react-native-maps";
 import fire from "./../../fire";
 import {ReactNativeAudioStreaming} from "react-native-audio-streaming";
@@ -11,6 +10,7 @@ export default class MainScreen extends Component {
         super(props);
         this.state = {
             stories: [],
+            selectedStory: {}
         };
     }
 
@@ -36,6 +36,12 @@ export default class MainScreen extends Component {
         return <View style={styles.container}>
             <MapView
                 style={styles.map}
+                initialRegion={{
+                    latitude: 56.317024,
+                    longitude: 44.014746,
+                    latitudeDelta: 0.0922,
+                    longitudeDelta: 0.0421,
+                }}
             >
                 {this.state.stories.map(story => {
                         return <MapView.Marker
@@ -47,37 +53,23 @@ export default class MainScreen extends Component {
                 )}
             </MapView>
 
-            <View style={{
-                ...bottomPanelStyle,
-                width: width
-            }}>
-                <View style={styles.createRecordButton}>
-                    <Link
-                        to="/createRecord"
-                        underlayColor='#f0f4f7'>
-                        <Text>Добавить запись</Text>
-                    </Link>
-                </View>
-            </View>
-
-            <View style={styles.profileIcon}>
-                <Link
-                    to="/profile"
-                    underlayColor='#f0f4f7'>
-                    <Text>Профиль</Text>
-                </Link>
-            </View>
         </View>
     }
 
     onStorySelected(e) {
         let selectedStory = this.state.stories.filter((story) => e.nativeEvent.id === story.id)[0];
-        const url = selectedStory.url;
+
         ReactNativeAudioStreaming.stop();
-        setTimeout(() => {
-            ReactNativeAudioStreaming.play(url, {showIniOSMediaCenter: true, showInAndroidNotifications: true});
-        }, 1500);
+        if (selectedStory.id !== this.state.selectedStory.id) {
+            this.setState({selectedStory});
+            const url = selectedStory.url;
+            setTimeout(() => {
+                ReactNativeAudioStreaming.play(url, {showIniOSMediaCenter: true, showInAndroidNotifications: true});
+            }, 1500);
+        }
     }
+
+
 }
 
 const bottomPanelStyle = {
