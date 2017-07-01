@@ -10,13 +10,14 @@ class BackHandlerRoute extends Component {
 
         if (!this.onMainScreen()) {
             this.props.history.goBack();
-            return true;
+        } else {
+            BackHandler.exitApp();
         }
-        return false;
+        return true;
     };
 
     onMainScreen = () => {
-        return this.props.history.entries.length === 1;
+        return this.props.location.pathname === '/';
     };
 
 
@@ -29,7 +30,6 @@ class BackHandlerRoute extends Component {
     }
 
     render() {
-        debugger;
         return this.props.children;
     }
 }

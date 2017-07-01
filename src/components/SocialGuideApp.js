@@ -1,9 +1,10 @@
 import React, {Component} from "react";
 import {StyleSheet, View, BackHandler} from "react-native";
-import MainScreen from "./mainScreen";
-import CreateRecordScreen from "./createRecordScreen";
 import {NativeRouter} from "react-router-native";
 import RouteHandler from "./RouteHandler";
+import MapScreen from "./map/MapScreen";
+import CreateRecordScreen from "./record/CreateRecordScreen";
+import ProfileScreen from "./profile/ProfileScreen";
 
 class SocialGuideApp extends Component {
 
@@ -11,8 +12,9 @@ class SocialGuideApp extends Component {
         return (
             <NativeRouter>
                 <View style={styles.container}>
-                    <RouteHandler exact path="/" component={MainScreen} {...this.props}/>
+                    <RouteHandler exact path="/" component={MapScreen} {...this.props}/>
                     <RouteHandler exact path="/createRecord" component={CreateRecordScreen} {...this.props}/>
+                    <RouteHandler exact path="/profile" component={ProfileScreen} {...this.props}/>
                 </View>
             </NativeRouter>
         );
