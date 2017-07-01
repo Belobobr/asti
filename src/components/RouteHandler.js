@@ -1,19 +1,23 @@
 import React, {Component} from "react";
 import {StyleSheet, View, BackHandler} from "react-native";
-import {Route} from "react-router-native";
+import {Route, Redirect} from "react-router-native";
 
 class BackHandlerRoute extends Component {
 
     backHandler = () => {
-        // this.onMainScreen and this.goBack are just examples, you need to use your own implementation here
-        // Typically you would use the navigator here to go to the last state.
-
         if (!this.onMainScreen()) {
             this.props.history.goBack();
         } else {
+            this.signOutAnonymousUser();
             BackHandler.exitApp();
         }
         return true;
+    };
+
+    signOutAnonymousUser = () => {
+        if (!this.props.user.id) {
+            this.props.sighOutAnonymous();
+        }
     };
 
     onMainScreen = () => {
@@ -30,16 +34,28 @@ class BackHandlerRoute extends Component {
     }
 
     render() {
+        debugger;
         return this.props.children;
     }
 }
 
 export default RouteHandler = ({component: Component, ...rest}) => (
-    <Route {...rest} render={props => (
-        <BackHandlerRoute {...props}>
-            <Component {...props}/>
-        </BackHandlerRoute>
-    )}/>
+    <Route {...rest} render={props => {
+        if (rest.auth.authenticated) {
+            return <BackHandlerRoute {...props} {...rest}>
+                <Component {...props}/>
+            </BackHandlerRoute>
+        } else {
+            if (props.location.pathname == '/login') {
+                return <Component {...props}/>;
+            } else {
+                return <Redirect to={{
+                    pathname: '/login',
+                    state: {from: props.location}
+                }}/>
+            }
+        }
+    }}/>
 );
 
 

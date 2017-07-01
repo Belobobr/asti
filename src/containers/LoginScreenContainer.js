@@ -1,15 +1,13 @@
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
-import SocialGuideApp from "../components/SocialGuideApp";
-import * as authActionCreators from '../actions/auth';
+import LoginScreen from "../components/login/LoginScreen";
+import * as authActionCreators from "../actions/auth";
 
-
-function mapStateToProps(state) {
+const mapStateToProps = (state) => {
     return {
         auth: state.auth,
-        user: state.user
     }
-}
+};
 
 function mapDispatchToProps(dispatch) {
     return bindActionCreators(
@@ -19,4 +17,9 @@ function mapDispatchToProps(dispatch) {
         ), dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SocialGuideApp)
+const LoginScreenContainer = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(LoginScreen);
+
+export default LoginScreenContainer

@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "158421730104",
+    "firebase_url": "https://asti-ab926.firebaseio.com",
+    "project_id": "asti-ab926",
+    "storage_bucket": "asti-ab926.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:158421730104:android:cd924f46868764b6",
+        "android_client_info": {
+          "package_name": "com.socialguide"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "158421730104-p8cp2hcp71je64dlonubkf40cm93gfuj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.socialguide",
+            "certificate_hash": "b24b8a6349956b19f59739d493b49ba2e0bd9085"
+          }
+        },
+        {
+          "client_id": "158421730104-j4t54stn6v6sh1jn6jbmgclckh5dhsii.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCsz8O6vG4fr6MzN8ZWPaO933hto7VauEk"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "158421730104-j4t54stn6v6sh1jn6jbmgclckh5dhsii.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

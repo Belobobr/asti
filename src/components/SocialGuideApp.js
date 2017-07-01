@@ -5,6 +5,7 @@ import RouteHandler from "./RouteHandler";
 import MapScreen from "./map/MapScreen";
 import CreateRecordScreen from "./record/CreateRecordScreen";
 import ProfileScreen from "./profile/ProfileScreen";
+import LoginScreenContainer from "./../containers/LoginScreenContainer";
 
 class SocialGuideApp extends Component {
 
@@ -15,6 +16,7 @@ class SocialGuideApp extends Component {
                     <RouteHandler exact path="/" component={MapScreen} {...this.props}/>
                     <RouteHandler exact path="/createRecord" component={CreateRecordScreen} {...this.props}/>
                     <RouteHandler exact path="/profile" component={ProfileScreen} {...this.props}/>
+                    <RouteHandler exact path="/login" component={LoginScreenContainer} {...this.props}/>
                 </View>
             </NativeRouter>
         );
