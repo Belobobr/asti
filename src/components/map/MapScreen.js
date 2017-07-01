@@ -5,6 +5,10 @@ import MapView from "react-native-maps";
 
 export default class MainScreen extends Component {
 
+    componentDidMount() {
+
+    }
+
     render() {
         var {width} = Dimensions.get('window');
 

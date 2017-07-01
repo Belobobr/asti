@@ -34,7 +34,6 @@ class BackHandlerRoute extends Component {
     }
 
     render() {
-        debugger;
         return this.props.children;
     }
 }

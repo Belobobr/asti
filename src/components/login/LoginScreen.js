@@ -10,7 +10,6 @@ class LoginScreen extends Component {
         const redirectToReferrer = this.props.auth.authenticated;
 
         if (redirectToReferrer) {
-            debugger;
             return (
                 <Redirect to={from}/>
             )
@@ -31,15 +30,6 @@ class LoginScreen extends Component {
                             Авторизоваться через Facebook
                         </Icon.Button>
                     </View>
-
-                    <View style={styles.authProvider}>
-                        <Icon.Button name="google"
-                                     backgroundColor="#3b5998"
-                                     onPress={this.authThroughGoogle}
-                        >
-                            Авторизоваться через Google
-                        </Icon.Button>
-                    </View>
                 </View>
 
                 <TouchableHighlight style={styles.button} onPress={this.explore}>
@@ -58,11 +48,6 @@ class LoginScreen extends Component {
             </View>
         )
     }
-
-    authThroughGoogle = () => {
-        debugger;
-        this.props.authenticateThroughGoogle();
-    };
 
     authThroughFacebook = () => {
         this.props.authenticateThroughFacebook();
