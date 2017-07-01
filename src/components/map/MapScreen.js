@@ -2,11 +2,32 @@ import React, {Component} from "react";
 import {StyleSheet, View, ToolbarAndroid, Image, Text, TouchableNativeFeedback, Dimensions} from "react-native";
 import {Link} from "react-router-native";
 import MapView from "react-native-maps";
+import fire from "./../../fire";
+import {ReactNativeAudioStreaming} from "react-native-audio-streaming";
 
 export default class MainScreen extends Component {
 
-    componentDidMount() {
+    constructor(props) {
+        super(props);
+        this.state = {
+            stories: [],
+        };
+    }
 
+    componentDidMount() {
+        //TODO move to action
+        let storiesRef = fire.database().ref('stories').orderByKey().limitToLast(100);
+
+        storiesRef.on('value', snapshot => {
+            let stories = [];
+
+            snapshot.forEach(childSnapshot => {
+                let story = childSnapshot.val();
+                story.id = childSnapshot.key;
+                stories.push(story);
+            });
+            this.setState({stories})
+        });
     }
 
     render() {
@@ -16,6 +37,14 @@ export default class MainScreen extends Component {
             <MapView
                 style={styles.map}
             >
+                {this.state.stories.map(story => {
+                        return <MapView.Marker
+                            coordinate={story.location}
+                            identifier={story.id}
+                            onPress={this.onStorySelected.bind(this)}
+                        />;
+                    }
+                )}
             </MapView>
 
             <View style={{
@@ -41,8 +70,13 @@ export default class MainScreen extends Component {
         </View>
     }
 
-    onCreateRecordClicked = () => {
-
+    onStorySelected(e) {
+        let selectedStory = this.state.stories.filter((story) => e.nativeEvent.id === story.id)[0];
+        const url = selectedStory.url;
+        ReactNativeAudioStreaming.stop();
+        setTimeout(() => {
+            ReactNativeAudioStreaming.play(url, {showIniOSMediaCenter: true, showInAndroidNotifications: true});
+        }, 1500);
     }
 }
 

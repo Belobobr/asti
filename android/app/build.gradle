@@ -133,6 +133,7 @@ android {
 }
 
 dependencies {
+    compile project(':react-native-audio-streaming')
     compile project(':react-native-facebook-login')
     compile project(':react-native-sound')
     compile project(':react-native-audio')
